@@ -29,6 +29,26 @@ async function lerTasks() {
     return buscaCompleta
 }
 
+async function deletarTask(id) {
+    try {
+        const conexao = await fetch(`http://localhost:3000/deleteTask/${id}`, {
+            method: "DELETE",
+        })
+
+        if (!conexao.ok) {
+            throw new Error("Não foi deletar a task.")
+        }
+
+        const conexaoConvertida = await conexao.json().catch(() => null);
+
+        return conexaoConvertida || { mensagem: "Task deletada com sucesso." };
+    } catch (error) {
+        console.error(error)
+        return { erro: "Ocorreu um erro ao tentar deletar a task." };
+    }
+}
+
+
 async function mostrarTasks() {
     const busca = await lerTasks()
     busca.forEach(async (task) => {
@@ -58,7 +78,7 @@ function formatarData(data) {
     return dataFormatada
 }
 
-function criarTasks(elementoTask) {
+async function criarTasks(elementoTask) {
     const tabela = document.createElement("table");
     tabela.setAttribute("border", "1")
     tabela.classList.add("secao-tarefas__tabela");
@@ -76,7 +96,7 @@ function criarTasks(elementoTask) {
 
             <tbody>
                 <tr>
-                    <td>${elementoTask.nome}</td>
+                    <td id="nome-tarefa">${elementoTask.nome}</td>
                     <td>${formatarData(elementoTask.data_criacao)}</td>
                     <td>
                         <select name="select" class="select-status">
@@ -97,6 +117,22 @@ function criarTasks(elementoTask) {
                 </tr>
             </tbody>
         `
+
+    const btnRemove = document.querySelectorAll(".btn-remove");
+    const arrayTabela = document.querySelectorAll(".secao-tarefas__tabela");
+    const nomeTarefa = document.querySelectorAll("#nome-tarefa");
+
+    btnRemove.forEach((btn, i) => {
+        btn.addEventListener("click", async (event) => {
+            arrayTabela[i].remove()
+
+            // const busca = await lerTasks()
+            // const buscaId = busca.find((elemento, i) => elemento.nome == nomeTarefa[i].textContent)
+            // console.log(buscaId) 
+
+        })
+    })
+
 
     return tabela
 }

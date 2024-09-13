@@ -102,6 +102,7 @@ tr td:nth-child(4) {
     cursor: pointer;
     border-radius: 5px;
     transition: .5s;
+    margin: 2px;
 }
 
 .btn-acoes:nth-child(1) {
