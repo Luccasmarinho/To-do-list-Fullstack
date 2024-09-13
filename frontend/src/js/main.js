@@ -52,7 +52,7 @@ async function deletarTask(id) {
 async function mostrarTasks() {
     const busca = await lerTasks()
     busca.forEach(async (task) => {
-        criarTasks(task)
+        criarElementos(task)
     })
 
 
@@ -68,7 +68,7 @@ form.addEventListener("submit", async (event) => {
     const buscaTasks = await lerTasks()
     const elementoTask = buscaTasks[buscaTasks.length - 1]
 
-    criarTasks(elementoTask)
+    criarElementos(elementoTask)
 
 });
 
@@ -78,7 +78,7 @@ function formatarData(data) {
     return dataFormatada
 }
 
-async function criarTasks(elementoTask) {
+async function criarElementos(elementoTask) {
     const tabela = document.createElement("table");
     tabela.setAttribute("border", "1")
     tabela.classList.add("secao-tarefas__tabela");
@@ -95,7 +95,7 @@ async function criarTasks(elementoTask) {
             </thead>
 
             <tbody>
-                <tr>
+                <tr id="${elementoTask.id}" class="elemento-tr">
                     <td id="nome-tarefa">${elementoTask.nome}</td>
                     <td>${formatarData(elementoTask.data_criacao)}</td>
                     <td>
@@ -120,19 +120,18 @@ async function criarTasks(elementoTask) {
 
     const btnRemove = document.querySelectorAll(".btn-remove");
     const arrayTabela = document.querySelectorAll(".secao-tarefas__tabela");
-    const nomeTarefa = document.querySelectorAll("#nome-tarefa");
+    const arrayId = document.querySelectorAll(".elemento-tr")
 
     btnRemove.forEach((btn, i) => {
-        btn.addEventListener("click", async (event) => {
+        btn.addEventListener("click", async () => {
             arrayTabela[i].remove()
 
-            // const busca = await lerTasks()
-            // const buscaId = busca.find((elemento, i) => elemento.nome == nomeTarefa[i].textContent)
-            // console.log(buscaId) 
+            const numeroId = arrayId[i].getAttribute("id")
 
+            await deletarTask(numeroId)
+ 
         })
     })
-
 
     return tabela
 }
