@@ -8,10 +8,10 @@
 }
 
 :root {
-   --color01: #051DA6;
-   --color02: #6583bf54;
-   --color03: #071359;
-   --color04: #D90404;
+    --color01: #051DA6;
+    --color02: #6583bf54;
+    --color03: #071359;
+    --color04: #D90404;
 }
 
 
@@ -80,6 +80,11 @@ tr td {
     width: 20%;
     font-size: 14px;
     background-color: var(--color02);
+}
+
+
+tr td:nth-child(1) {
+    max-width: 150px;
 }
 
 tr td:nth-child(4) {
