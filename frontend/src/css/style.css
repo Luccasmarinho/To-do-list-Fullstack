@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", Arial, sans-serif;
+}
+
+:root {
+   --color01: #051DA6;
+   --color02: #6583bf54;
+   --color03: #071359;
+   --color04: #D90404;
+}
+
+
+body {
+    background: linear-gradient(to top, var(--color02), var(--color01), var(--color03));
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-todo {
+    background-color: white;
+    width: 1000px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px black;
+}
+
+.container-todo__form {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.container-todo__input-text {
+    width: 100%;
+}
+
+.container-todo__btn-task {
+    width: 20%;
+    background-color: var(--color01);
+    color: white;
+    font-weight: bold;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.container-todo__btn-task:hover {
+    background-color: var(--color03);
+}
+
+.container-todo__input-text, 
+.container-todo__btn-task {
+    border: 1px solid black;
+    border-radius: 8px;
+    outline: none;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.secao-tarefas {
+    width: 100%;
+}
+
+.secao-tarefas__tabela {
+    width: 100%;
+}
+
+tr td {
+    padding: 10px;
+    text-align: center;
+    width: 20%;
+    font-size: 14px;
+    background-color: var(--color02);
+}
+
+tr td:nth-child(4) {
+    width: 10%;
+}
+
+.select-status {
+    padding: 3px;
+    border-radius: 5px;
+    width: 80%;
+}
+
+.btn-acoes {
+    padding: 5px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    outline: none;
+    border: 1px solid black;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: .5s;
+}
+
+.btn-acoes:nth-child(1) {
+    background-color: #F2B705;
+}
+
+.btn-acoes:nth-child(1):hover {
+    background-color: #ffff00b8;
+    color: white;
+}
+
+.btn-acoes:nth-child(2) {
+    background-color: var(--color04);
+}
+
+.btn-acoes:nth-child(2):hover {
+    background-color: #ff0000b3;
+    color: white;
+
+}
