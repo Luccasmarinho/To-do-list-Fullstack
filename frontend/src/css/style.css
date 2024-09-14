@@ -38,6 +38,7 @@ main {
     display: flex;
     gap: 5px;
     margin-bottom: 5px;
+    margin-top: 10px;
 }
 
 .container-todo__input-text {
@@ -57,7 +58,7 @@ main {
     background-color: var(--color03);
 }
 
-.container-todo__input-text, 
+.container-todo__input-text,
 .container-todo__btn-task {
     border: 1px solid black;
     border-radius: 8px;
@@ -127,4 +128,85 @@ tr td:nth-child(4) {
     background-color: #ff0000b3;
     color: white;
 
+}
+
+.modal-overlay__modal {
+    border-radius: 8px;
+    position: fixed;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    width: 300px;
+
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none;
+}
+
+.modal-overlay__modal__box-form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.modal__form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.modal__input-text {
+    width: 77%;
+  
+}
+
+.modal__btn-salvar,
+.modal__input-text  {
+    border: 1px solid black;
+    border-radius: 8px;
+    outline: none;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.modal__btn-salvar {
+    background-color: var(--color01);
+    color: white;
+    font-weight: bold;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.modal__btn-salvar:hover {
+    background-color: var(--color03);
+}
+
+.modal__btn-sair {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.modal__btn-sair:hover {
+    color: var(--color04);
 }
