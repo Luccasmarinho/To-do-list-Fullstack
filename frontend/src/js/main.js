@@ -106,24 +106,24 @@ function formatarData(data) {
     return dataFormatada
 }
 
-function ValorInputModal(numeroId) {
-    formModal.addEventListener("submit", async (event) => {
-        event.preventDefault()
-        const valor = inputTextModal.value;
+// function ValorInputModal(numeroId) {
+//     formModal.addEventListener("submit", async (event) => {
+//         event.preventDefault()
+//         const valor = inputTextModal.value;
 
-        const atualizacao = {
-            nome: valor,
-            status: "sei la"
-        }
+//         const atualizacao = {
+//             nome: valor,
+//             status: "sei la"
+//         }
 
-        await atualizarTask(atualizacao, numeroId)
-        modal.style.display = "none"
-        window.location.reload()
+//         await atualizarTask(atualizacao, numeroId)
+//         modal.style.display = "none"
+//         window.location.reload()
 
-        console.log(valor)
+//         console.log(valor)
 
-    })
-}
+//     })
+// }
 
 
 async function criarElementos(elementoTask) {
@@ -166,6 +166,7 @@ async function criarElementos(elementoTask) {
             </tbody>
         `
 
+    //REMOVE TASK
     const btnRemove = document.querySelectorAll(".btn-remove");
     const arrayTabela = document.querySelectorAll(".secao-tarefas__tabela");
     const arrayId = document.querySelectorAll(".elemento-tr");
@@ -180,18 +181,21 @@ async function criarElementos(elementoTask) {
         })
     })
 
+    //ATUALIZA TASK
     const btnAtualiza = document.querySelectorAll(".btn-edit");
     const arraySelect = document.querySelectorAll("select");
+    const nomeTarefa = document.querySelectorAll("#nome-tarefa");
 
     btnAtualiza.forEach((btn, i) => {
         btn.addEventListener("click", async () => {
             modal.style.display = "block"
+            inputTextModal.value = `${nomeTarefa[i].textContent}`
 
-            console.log(arraySelect[i].children[0])
+            // console.log(arraySelect[i].children[0])
 
             const numeroId = arrayId[i].getAttribute("id")
             // ValorInputModal(numeroId)
-
+            
             formModal.addEventListener("submit", async (event) => {
                 event.preventDefault()
                 const valor = inputTextModal.value;
