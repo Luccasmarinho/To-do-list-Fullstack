@@ -148,9 +148,9 @@ async function criarElementos(elementoTask) {
                     <td>${formatarData(elementoTask.data_criacao)}</td>
                     <td>
                         <select name="select" class="select-status">
-                            <option value="pendente" selected>${elementoTask.status}</option>
-                            <option value="andamento">Em andamento</option>
-                            <option value="concluido">Concluído</option>
+                            <option value="Pendente" selected class="opcoes">${elementoTask.status}</option>
+                            <option value="Em andamento" class="opcoes">Em andamento</option>
+                            <option value="Concluído" class="opcoes">Concluído</option>
                         </select>
                     </td>
                     <td>
@@ -181,25 +181,34 @@ async function criarElementos(elementoTask) {
     })
 
     const btnAtualiza = document.querySelectorAll(".btn-edit");
+    const arraySelect = document.querySelectorAll("select");
 
     btnAtualiza.forEach((btn, i) => {
         btn.addEventListener("click", async () => {
             modal.style.display = "block"
 
+            console.log(arraySelect[i].children[0])
+
             const numeroId = arrayId[i].getAttribute("id")
-            ValorInputModal(numeroId)
+            // ValorInputModal(numeroId)
 
-            // const dadosParaAtualizar = {
-            //     nome: editTask,
-            //     status: "Em andamento"
-            // }
-
-            // await atualizarTask(dadosParaAtualizar, numeroId)
-
-           
+            formModal.addEventListener("submit", async (event) => {
+                event.preventDefault()
+                const valor = inputTextModal.value;
+        
+                const atualizacao = {
+                    nome: valor,
+                    status: arraySelect[i].value
+                }
+        
+                await atualizarTask(atualizacao, numeroId)
+                modal.style.display = "none"
+                window.location.reload()
+        
+        
+            })           
         })
     })
-
 
     return tabela
 }
@@ -208,8 +217,6 @@ document.querySelector(".modal__btn-sair").addEventListener("click", () => {
     modal.style.display = "none"
     window.location.reload()
 })
-
-
 
 
 // arrayTabela[i].lastElementChild.innerHTML = ` 
