@@ -1,3 +1,5 @@
+import validarCampo from "./validacao.js";
+
 const form = document.querySelector(".container-todo__form");
 const formModal = document.querySelector(".modal__form");
 const inputText = document.querySelector(".container-todo__input-text");
@@ -91,6 +93,8 @@ mostrarTasks()
 
 form.addEventListener("submit", async (event) => {
     event.preventDefault()
+
+    validarCampo(inputText.value)
 
     await criarTask(inputText.value)
 
@@ -203,10 +207,3 @@ document.querySelector(".modal__btn-sair").addEventListener("click", () => {
     modal.style.display = "none"
     window.location.reload()
 })
-
-
-{/* <select name="select" class="select-status">
-    <option value="Pendente" selected class="opcoes">${elementoTask.status}</option>
-    <option value="Em andamento" class="opcoes">Em andamento</option>
-    <option value="Concluído" class="opcoes">Concluído</option>
-</select>  */}
