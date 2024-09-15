@@ -15,7 +15,7 @@ export const remove = async (id) => {
 }
 
 export const read = async () => {
-    const query = "SELECT * FROM tasks"
+    const query = "SELECT * FROM tasks ORDER BY id ASC"
     const readTask = await pool.query(query)
     return readTask
 }
