@@ -4,6 +4,7 @@ const inputText = document.querySelector(".container-todo__input-text");
 const inputTextModal = document.querySelector(".modal__input-text");
 const secaoTarefas = document.querySelector(".secao-tarefas");
 const modal = document.querySelector(".modal-overlay");
+const inputRadio = document.querySelectorAll("[type=radio]");
 
 async function criarTask(nome) {
     const conexao = await fetch("http://localhost:3000/createTask", {
@@ -106,26 +107,6 @@ function formatarData(data) {
     return dataFormatada
 }
 
-// function ValorInputModal(numeroId) {
-//     formModal.addEventListener("submit", async (event) => {
-//         event.preventDefault()
-//         const valor = inputTextModal.value;
-
-//         const atualizacao = {
-//             nome: valor,
-//             status: "sei la"
-//         }
-
-//         await atualizarTask(atualizacao, numeroId)
-//         modal.style.display = "none"
-//         window.location.reload()
-
-//         console.log(valor)
-
-//     })
-// }
-
-
 async function criarElementos(elementoTask) {
     const tabela = document.createElement("table");
     tabela.setAttribute("border", "1")
@@ -147,11 +128,7 @@ async function criarElementos(elementoTask) {
                     <td id="nome-tarefa">${elementoTask.nome}</td>
                     <td>${formatarData(elementoTask.data_criacao)}</td>
                     <td>
-                        <select name="select" class="select-status">
-                            <option value="Pendente" selected class="opcoes">${elementoTask.status}</option>
-                            <option value="Em andamento" class="opcoes">Em andamento</option>
-                            <option value="Concluído" class="opcoes">Concluído</option>
-                        </select>
+                        ${elementoTask.status}
                     </td>
                     <td>
                         <button class="btn-acoes btn-edit">
@@ -183,7 +160,7 @@ async function criarElementos(elementoTask) {
 
     //ATUALIZA TASK
     const btnAtualiza = document.querySelectorAll(".btn-edit");
-    const arraySelect = document.querySelectorAll("select");
+    // const arraySelect = document.querySelectorAll("select");
     const nomeTarefa = document.querySelectorAll("#nome-tarefa");
 
     btnAtualiza.forEach((btn, i) => {
@@ -191,26 +168,31 @@ async function criarElementos(elementoTask) {
             modal.style.display = "block"
             inputTextModal.value = `${nomeTarefa[i].textContent}`
 
-            // console.log(arraySelect[i].children[0])
-
             const numeroId = arrayId[i].getAttribute("id")
-            // ValorInputModal(numeroId)
-            
+
+            let guardaValorInputRadio = []
+
+            inputRadio.forEach((radio) => {
+                radio.addEventListener("change", async (e) => {
+                    const valorRadio = e.target.value
+                    guardaValorInputRadio.push(valorRadio)
+                })
+            })
+
             formModal.addEventListener("submit", async (event) => {
                 event.preventDefault()
-                const valor = inputTextModal.value;
-        
+                const valorInputModal = inputTextModal.value;
+                const valorInputRadio = guardaValorInputRadio[guardaValorInputRadio.length - 1]
+
                 const atualizacao = {
-                    nome: valor,
-                    status: arraySelect[i].value
+                    nome: valorInputModal,
+                    status: valorInputRadio
                 }
-        
+
                 await atualizarTask(atualizacao, numeroId)
                 modal.style.display = "none"
                 window.location.reload()
-        
-        
-            })           
+            })
         })
     })
 
@@ -223,28 +205,8 @@ document.querySelector(".modal__btn-sair").addEventListener("click", () => {
 })
 
 
-// arrayTabela[i].lastElementChild.innerHTML = ` 
-// <tbody>
-
-// <tr id="${elementoTask.id}" class="elemento-tr">
-//         <td id="nome-tarefa">${elementoTask.nome}</td>
-//         <td>${formatarData(elementoTask.data_criacao)}</td>
-//         <td>
-//             <select name="select" class="select-status">
-//                 <option value="pendente" selected>${elementoTask.status}</option>
-//                 <option value="andamento">Em andamento</option>
-//                 <option value="concluido">Concluído</option>
-//             </select>
-//         </td>
-//         <td>
-//             <button class="btn-acoes btn-edit">
-//                 <i class="fa-solid fa-pen-to-square"></i>
-//             </button>
-
-//             <button class="btn-acoes btn-remove">
-//                 <i class="fa-solid fa-trash"></i>   
-//             </button>
-//         </td>
-//     </tr>
-// </tbody>
-// `
+{/* <select name="select" class="select-status">
+    <option value="Pendente" selected class="opcoes">${elementoTask.status}</option>
+    <option value="Em andamento" class="opcoes">Em andamento</option>
+    <option value="Concluído" class="opcoes">Concluído</option>
+</select>  */}

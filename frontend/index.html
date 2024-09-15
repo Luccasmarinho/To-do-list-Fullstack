@@ -10,6 +10,7 @@
 </head>
 <body>
     <main>
+
         <section class="modal-overlay">
             <div class="modal-overlay__modal">
                 <div class="modal-overlay__modal__box-form">
@@ -22,6 +23,25 @@
                 <button class="modal__btn-sair">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
+                <div class="modal__area-input-radio">
+                    <div>
+                        <input type="radio" name="status" value="Pendente" id="pendente" checked>
+                        <label for="pendente">Pendente</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="status" value="Em andamento" id="em-andamento">
+                        <label for="em-andamento">Em andamento</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="status" value="Concluído" id="Concluído">
+                        <label for="Concluído">Concluído</label>
+                    </div>
+                </div>
+                <!-- <select name="select" class="select-status">
+                    <option value="Pendente" selected class="opcoes">Pendente</option>
+                    <option value="Em andamento" class="opcoes">Em andamento</option>
+                    <option value="Concluído" class="opcoes">Concluído</option>
+                </select>  -->
             </div>
         </section>
 
