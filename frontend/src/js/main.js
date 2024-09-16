@@ -132,7 +132,7 @@ async function criarElementos(elementoTask) {
                     <td id="nome-tarefa">${elementoTask.nome}</td>
                     <td>${formatarData(elementoTask.data_criacao)}</td>
                     <td>
-                        ${elementoTask.status}
+                        ${elementoTask.status || "Pendente"}
                     </td>
                     <td>
                         <button class="btn-acoes btn-edit">
@@ -164,7 +164,6 @@ async function criarElementos(elementoTask) {
 
     //ATUALIZA TASK
     const btnAtualiza = document.querySelectorAll(".btn-edit");
-    // const arraySelect = document.querySelectorAll("select");
     const nomeTarefa = document.querySelectorAll("#nome-tarefa");
 
     btnAtualiza.forEach((btn, i) => {
